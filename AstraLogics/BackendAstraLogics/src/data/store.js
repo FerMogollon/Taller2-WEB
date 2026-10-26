@@ -1,7 +1,6 @@
 // "Base de datos" en memoria: arrays/objetos globales del módulo.
 // IMPORTANTE: se exportan como const y se MUTAN en sitio (push, splice, length = 0).
 // Si se reasignaran con `let`, los demás módulos no verían el cambio.
-import { TEMP_MIN, TEMP_MAX } from "../config.js";
 
 const crearInventarioInicial = () => [
   { id: 201, nombre: "Tanque de Oxígeno XL", categoria: "Soporte vital", precio: 50.0, stock: 5 },
@@ -14,7 +13,6 @@ const crearInventarioInicial = () => [
   { id: 208, nombre: "Baliza de Emergencia", categoria: "Comunicaciones", precio: 35.0, stock: 0 }, // agotado: sirve para probar el botón deshabilitado
 ];
 
-// --- AstroLogistics ---
 export const inventario = crearInventarioInicial(); // [{ id, nombre, categoria, precio, stock }]
 export const carga = []; // [{ id, cantidad }]
 export const mision = { iniciadaEn: null, expiraEn: null }; // timestamps en ms
@@ -26,9 +24,3 @@ export const restaurarDatosAstro = () => {
   mision.iniciadaEn = null;
   mision.expiraEn = null;
 };
-
-// --- Estabiliza el Reactor ---
-export const generarTemperatura = () =>
-  Math.floor(Math.random() * (TEMP_MAX - TEMP_MIN + 1)) + TEMP_MIN;
-
-export const reactor = { temperatura: generarTemperatura() }; // se genera al iniciar el servidor

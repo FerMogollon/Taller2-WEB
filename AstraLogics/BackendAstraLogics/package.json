@@ -1,7 +1,7 @@
 {
-  "name": "evaluacion-web-backend",
+  "name": "backend-astrologistics",
   "version": "1.0.0",
-  "description": "Backend Express: Estabiliza el Reactor + AstroLogistics Ltd.",
+  "description": "Backend Express: AstroLogistics Ltd.",
   "type": "module",
   "main": "src/server.js",
   "scripts": {

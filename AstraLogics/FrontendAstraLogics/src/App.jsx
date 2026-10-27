@@ -1,5 +1,15 @@
 import { useState, useEffect } from "react";
-import { Container, Row, Col, Spinner, Button, UncontrolledAlert } from "reactstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Spinner,
+  Button,
+  UncontrolledAlert,
+  Modal,
+  ModalBody,
+  ModalFooter,
+} from "reactstrap";
 import * as api from "./services/api.js";
 import PanelMision from "./components/PanelMision.jsx";
 import Catalogo from "./components/Catalogo.jsx";
@@ -13,6 +23,7 @@ function App() {
   const [procesando, setProcesando] = useState(false); // boolean: "Calculando peso..."
   const [expirada, setExpirada] = useState(false);
   const [error, setError] = useState(null); // { id, mensaje } | null
+  const [confirmando, setConfirmando] = useState(false); // modal de confirmación de reinicio
 
   // Carga inicial con promesas encadenadas (.then / .catch / .finally):
   // Endpoint 1 (inventario) + Endpoint 2 (carga).
@@ -66,6 +77,14 @@ function App() {
   const desembarcar = (id) => ejecutar(() => api.eliminarSuministro(id));
   const reiniciar = () => ejecutar(() => api.reiniciarMision());
 
+  // Reemplaza window.confirm por un modal con estilo propio.
+  const confirmarReinicio = () => setConfirmando(true);
+  const cancelarReinicio = () => setConfirmando(false);
+  const aceptarReinicio = () => {
+    setConfirmando(false);
+    reiniciar();
+  };
+
   const marcarExpirada = () => setExpirada(true);
 
   const alerta = error && (
@@ -105,6 +124,11 @@ function App() {
         <header className="encabezado text-center">
           <h1>Prepara tu nave</h1>
           <p>Elige los suministros dentro del presupuesto antes de que se cierre la ventana de lanzamiento.</p>
+          {!expirada && (
+            <Button color="danger" outline disabled={procesando} onClick={confirmarReinicio}>
+              Reiniciar misión
+            </Button>
+          )}
         </header>
 
         {expirada ? (
@@ -126,6 +150,21 @@ function App() {
           </Row>
         )}
       </Container>
+
+      <Modal isOpen={confirmando} toggle={cancelarReinicio} centered contentClassName="modal-mision">
+        <ModalBody>
+          <h5>¿Reiniciar la misión?</h5>
+          <p>La carga actual se devolverá a la base.</p>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="danger" onClick={aceptarReinicio}>
+            Reiniciar
+          </Button>
+          <Button color="secondary" outline onClick={cancelarReinicio}>
+            Cancelar
+          </Button>
+        </ModalFooter>
+      </Modal>
     </>
   );
 }

@@ -200,6 +200,46 @@ h1, h2, h5 {
   box-shadow: 4px 4px 0 var(--tinta);
 }
 
+/* ===== Modal de confirmación (reiniciar misión) ===== */
+.modal-mision {
+  background: var(--crema);
+  color: var(--tinta);
+  border: 2px solid var(--tinta);
+  border-radius: 14px;
+  box-shadow: 6px 6px 0 var(--tinta);
+  text-align: center;
+}
+.modal-mision .modal-body { padding: 1.75rem 1.5rem 0.5rem; }
+.modal-mision .modal-body h5 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+.modal-mision .modal-body p { margin: 0; opacity: 0.8; }
+.modal-mision .modal-footer {
+  border-top: 0;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem 1.5rem;
+}
+.modal-mision .btn-danger {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--rojo);
+  --bs-btn-border-color: var(--tinta);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #b23520;
+  --bs-btn-hover-border-color: var(--tinta);
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #9c2d1a;
+  --bs-btn-active-border-color: var(--tinta);
+}
+.modal-mision .btn-outline-secondary {
+  --bs-btn-color: var(--tinta);
+  --bs-btn-border-color: var(--tinta);
+  --bs-btn-hover-color: var(--crema);
+  --bs-btn-hover-bg: var(--tinta);
+  --bs-btn-hover-border-color: var(--tinta);
+  --bs-btn-active-color: var(--crema);
+  --bs-btn-active-bg: var(--tinta);
+  --bs-btn-active-border-color: var(--tinta);
+}
+
 /* ===== Estados especiales ===== */
 .pantalla-central {
   min-height: 100vh;

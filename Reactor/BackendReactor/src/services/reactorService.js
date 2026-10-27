@@ -2,7 +2,7 @@ import { reactor, generarTemperatura } from "../data/store.js";
 
 const logTemperatura = () => {
   if (process.env.NODE_ENV !== "production") {
-    console.log(`[reactor] temperatura de estabilización: ${reactor.temperatura}`);
+    console.log("[reactor] temperatura de estabilización generada");
   }
 };
 

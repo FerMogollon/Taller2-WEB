@@ -95,8 +95,66 @@ input[type="number"]:focus { outline: 3px solid var(--azul); outline-offset: 2px
 
 .victoria { display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; }
 
-/* Historial */
-.historial { width: 100%; }
+/* Historial: menú hamburguesa */
+.hamburguesa {
+  position: fixed; top: 16px; right: 16px; z-index: 20;
+  width: 48px; height: 48px;
+  display: grid; place-items: center;
+  border: 0; border-radius: 99px;
+  background: var(--amatista-suave);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.hamburguesa:hover { transform: translateY(-1px); }
+.hamburguesa-barras,
+.hamburguesa-barras::before,
+.hamburguesa-barras::after {
+  display: block; width: 20px; height: 2px; border-radius: 2px;
+  background: var(--rubor);
+}
+.hamburguesa-barras { position: relative; }
+.hamburguesa-barras::before, .hamburguesa-barras::after { content: ""; position: absolute; left: 0; }
+.hamburguesa-barras::before { top: -6px; }
+.hamburguesa-barras::after { top: 6px; }
+.hamburguesa-contador {
+  position: absolute; top: -4px; right: -4px;
+  min-width: 20px; height: 20px; padding: 0 5px;
+  display: grid; place-items: center;
+  border-radius: 99px;
+  background: var(--algodon); color: var(--amatista);
+  font-size: 0.75rem; font-weight: 700;
+}
+
+.velo {
+  position: fixed; inset: 0; z-index: 30;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s;
+}
+.velo.abierto { opacity: 1; pointer-events: auto; }
+
+.panel {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 40;
+  width: min(360px, 88vw);
+  padding: 20px 20px 40px;
+  background: var(--amatista);
+  border-left: 2px solid var(--amatista-suave);
+  overflow-y: auto;
+  text-align: center;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.28s ease, visibility 0s linear 0.28s;
+}
+.panel.abierto { transform: translateX(0); visibility: visible; transition: transform 0.28s ease; }
+
+.panel-cabecera { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.panel-cabecera h2 { margin: 0; }
+.cerrar {
+  width: 40px; height: 40px; border: 0; border-radius: 99px;
+  background: var(--amatista-suave); color: var(--rubor);
+  font: inherit; font-size: 1rem; cursor: pointer;
+}
+
 .lista { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .fila {
   background: var(--amatista-suave);
